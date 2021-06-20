@@ -227,12 +227,12 @@ end;
 
 # ╔═╡ ee80e807-c732-4b00-bda1-40190601a2e2
 begin
-	convert_date_to_ddmmyyyy = (date::String -> string(SubString(date, 7:8), "-", 
-													   SubString(date, 5:6), "-",
-													   SubString(date, 1:4))::String)
-	convert_date_to_yyyymmdd = (date::String -> string(SubString(date, 7:10),
-													   SubString(date, 4:5),
-													   SubString(date, 1:2))::String)
+    convert_date_to_ddmmyyyy = (date::String -> string(SubString(date, 7:8), "-",
+                                                       SubString(date, 5:6), "-",
+                                                       SubString(date, 1:4))::String)
+    convert_date_to_yyyymmdd = (date::String -> string(SubString(date, 7:10),
+                                                       SubString(date, 4:5),
+                                                       SubString(date, 1:2))::String)
 end;
 
 # ╔═╡ 6b06aca8-726f-4ed1-a53b-8894cfc51dfd
