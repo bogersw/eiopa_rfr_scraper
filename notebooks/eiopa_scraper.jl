@@ -322,17 +322,25 @@ end;
 
 # ╔═╡ 7de74ab8-dc5c-411a-995c-d29f67307e5e
 begin
-	rfr_plot = Plots.plot(1:rfr_upper_limit, 
-						  selected_rfrs[1].interestRates,
-						  label=selected_rfrs[1].rfrDate, 
-						  legend=:topleft, 
-						  size=(1000,  600))
-	for i in 2:length(selected_rfrs)
-		Plots.plot!(rfr_plot, 1:rfr_upper_limit,
-					selected_rfrs[i].interestRates, 
-					label=selected_rfrs[i].rfrDate)
-	end
-	rfr_plot
+    rfr_plot = Plots.plot(1:rfr_upper_limit, 
+                          selected_rfrs[1].interestRates,
+                          label=selected_rfrs[1].rfrDate, 
+                          legend=:topleft,
+                          linewidth=3,
+                          size=(1000,  600),
+                          title="RFR term structures")
+    Plots.xlabel!(rfr_plot, "Projection in years", bottom_margin=5Plots.PlotMeasures.mm)
+    Plots.ylabel!(rfr_plot, "Risk-free interest rate (%)", left_margin=5Plots.PlotMeasures.mm)
+    for i in 2:length(selected_rfrs)
+        Plots.plot!(rfr_plot,
+                    1:rfr_upper_limit,
+                    selected_rfrs[i].interestRates, 
+                    label=selected_rfrs[i].rfrDate,
+                    linewidth=3)
+    end
+    Plots.yticks!(rfr_plot, (Plots.yticks(rfr_plot)[1][1], 
+                             [string(100*tick, "%") for tick in Plots.yticks(rfr_plot)[1][1]]))
+    rfr_plot
 end
 
 # ╔═╡ 682e0515-22b8-437f-af62-47a490652e9b
