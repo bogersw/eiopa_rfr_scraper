@@ -55,6 +55,11 @@ md"""
 # Plot risk-free interest rate term structures
 """
 
+# ╔═╡ 968d8979-0301-4144-9a5f-726cf877c78a
+md"""
+The table below shows the interest rates of the selected RFR term structures.
+"""
+
 # ╔═╡ 7c527a88-7eb7-4c6c-b14c-c6f22ea0083e
 md"""
 # Imports
@@ -70,6 +75,7 @@ begin
     import XLSX
     import Plots
     import PlutoUI
+	import DataFrames
 end
 
 # ╔═╡ e77d8d03-c9b0-4ed6-ba64-fd7ab03f98db
@@ -343,6 +349,16 @@ begin
     rfr_plot
 end
 
+# ╔═╡ c85b7a4c-11dd-4ce9-afcc-a9c20be4bd10
+begin
+	df = DataFrames.DataFrame()
+	for selected_rfr in selected_rfrs
+		column_name::String = selected_rfr.rfrDate
+		df[!, column_name] = selected_rfr.interestRates
+	end
+	df
+end
+
 # ╔═╡ 682e0515-22b8-437f-af62-47a490652e9b
 html"""<style>
 main {
@@ -359,6 +375,8 @@ main {
 # ╟─d0bbbdae-95e5-4448-ad80-ba7ca22f3178
 # ╟─f57e9bfc-7b64-4460-ac3c-05573a32859c
 # ╟─7de74ab8-dc5c-411a-995c-d29f67307e5e
+# ╟─968d8979-0301-4144-9a5f-726cf877c78a
+# ╟─c85b7a4c-11dd-4ce9-afcc-a9c20be4bd10
 # ╟─7c527a88-7eb7-4c6c-b14c-c6f22ea0083e
 # ╠═0d6afd42-c7ca-11eb-27d6-1db1a07a7e73
 # ╟─1322974d-16bd-4fea-853a-335c77d1721a
